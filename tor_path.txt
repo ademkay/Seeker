@@ -1,1 +1,1 @@
-/home/kali/Downloads/tor-browser/start-tor-browser.desktop
+/home/kali/tor-browser/start-tor-browser.desktop
