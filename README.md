@@ -1,7 +1,7 @@
 # Seeker
 Primitive email address finder for Linux.
 
-1. Find your 'torrc' file in the Tor directory and add the following:
+1. Find your 'torrc' file in the Tor directory and add the following, both from new string:
 	ControlPort 9051
 	CookieAuthentication 1
 2. Write the path to your Tor launcher as here:
