@@ -1,5 +1,5 @@
 # Seeker
-Primitive email address finder for Linux.
+Email address finder for Linux.
 The project is on development stage.
 
 1. Find your 'torrc' file in the Tor directory and add the following:
