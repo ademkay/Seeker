@@ -12,6 +12,10 @@ class colour:
     Blue = "\u001b[34m"
     Magenta = "\u001b[35m"
 
+os.system("clear")
+print(colour.Magenta + "\033[1m▒▒▒▒▒ SEEKER ▒▒▒▒▒\033[0m")
+print()
+
 # USER AGENTS FOR TOR
 
 user_agents = [
@@ -102,7 +106,7 @@ def search_email(email):
         print(f"\033[1mTotal results for {email}\033[0m: {result_qty}")
         # save_to_file([f"Result for {email}:", ""] + search_result + [""], "search_log.txt")
         if result_qty > 0:
-            save_to_file([f"Result for {email}:", ""])
+            save_to_file([f"Result for {email}:", "search_log.txt"])
             for result in search_result:
                 save_to_file(result, "search_log.txt")
             save_to_file("", "search_log.txt")
@@ -114,15 +118,15 @@ def search_email_variants(firstname, lastname, domain):
     email_variants = [
         f"{firstname}.{lastname}@{domain}", #firstname.lastname@test.com
         f"{firstname[0]}.{lastname}@{domain}", #f.lastname@test.com
-        f"{firstname}.{lastname[0]}@{domain}", #firstname.t@test.com
+        f"{firstname}.{lastname[0]}@{domain}", #firstname.l@test.com
 
         f"{firstname}-{lastname}@{domain}", #firstname-lastname@test.com
         f"{firstname[0]}-{lastname}@{domain}", #f-lastname@test.com
-        f"{firstname}-{lastname[0]}@{domain}", #firstname-t@test.com
+        f"{firstname}-{lastname[0]}@{domain}", #firstname-l@test.com
 
         f"{firstname}_{lastname}@{domain}", #firstname_lastname@test.com
         f"{firstname[0]}_{lastname}@{domain}", #f_lastname@test.com
-        f"{firstname}_{lastname[0]}@{domain}", #firstname_t@test.com
+        f"{firstname}_{lastname[0]}@{domain}", #firstname_l@test.com
 
         f"{firstname}{lastname}@{domain}", #firstnamelastname@test.com
         f"{firstname[0]}{lastname}@{domain}", #flastname@test.com
