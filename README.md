@@ -2,10 +2,10 @@
 Primitive email address finder for Linux.
 The project is on development stage.
 
-1. Find your 'torrc' file in the Tor directory and add the following, both from new string:
+1. Find your 'torrc' file in the Tor directory and add the following:
 	ControlPort 9051
 	CookieAuthentication 1
-2. Write the path to your Tor launcher as here:
+2. Open 'tor_path.txt', replace an existing path with your Tor launcher path as here:
 	/home/kali/tor-browser/start-tor-browser.desktop
 3. Run install.py to install required Python libraries
 4. Run seeker.py WITHOUT 'sudo' (python3 seeker.py). Follow the instructions: wait until the browser starts and connects.
