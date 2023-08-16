@@ -66,7 +66,7 @@ def renew_tor_ip():
     with Controller.from_port(port=TOR_CONTROL_PORT) as controller:
         controller.authenticate()
         controller.signal(Signal.NEWNYM)
-    time.sleep(random.uniform(2, 4))
+    time.sleep(random.uniform(3, 4))
 
 def input_name():
     firstname = input("\033[1mFirst name: \033[0m")
