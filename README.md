@@ -15,7 +15,7 @@ The project is on development stage.
 Tested on Kali Linux.
 Requires Python3 and Tor browser.
 
-Contact me if you meet any errors, I'll be thankful.
+Notify me on e-mail if you meet any errors, I'll be thankful.
 
 Buy me a coffee (PayPal):
 knivedschizo@proton.me
