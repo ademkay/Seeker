@@ -1,6 +1,5 @@
 # Seeker
-Email address finder.
-The project is on development stage.
+Email address finder. The project is on development stage. Totally updated, replaced old failed options, added new ones. Need some help in testing and development, so if you can (and want) - contact me on mail.
 
 1. Run install.py to install required Python libraries
 2. Run seeker.py (python3 seeker.py). Read the instructions carefully.
