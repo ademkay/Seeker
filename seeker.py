@@ -71,8 +71,11 @@ def search_email(domain):
             print("\033[1mGetting e-mails. Please wait...\033[0m", end="\n\n")
             unfiltered_general_mail_list = [] # addresses from all URLs
             for result in url_list:
-                single_url_mail_list = domain_parser(requests.get(result))
-                unfiltered_general_mail_list.extend(single_url_mail_list)
+                try:
+                    single_url_mail_list = domain_parser(requests.get(result))
+                    unfiltered_general_mail_list.extend(single_url_mail_list)
+                except requests.exceptions.RequestException as req_exc:
+                    print(f"Error fetching URL {result}: {req_exc}")
             unique_only_general_list = list(set(unfiltered_general_mail_list)) # only unique addresses from all URLs
             print("\033[1mMails:\033[0m", end="\n\n")
             save_to_file(["Mails:"], "search_log.txt")
@@ -80,6 +83,7 @@ def search_email(domain):
                 print(f"\033[1m{num}. \033[0m {result}")
                 save_to_file([f"{num}. {result}"], "search_log.txt")
             print()
+            print("\033[1mSearch finished, result saved to 'search_log.txt'\033[0m", end="\n\n")
             save_to_file("\n", "search_log.txt")
 
     except Exception as e:
