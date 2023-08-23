@@ -2,20 +2,17 @@
 Email address finder for Linux.
 The project is on development stage.
 
-1. Find your 'torrc' file in the Tor directory and add the following:
-	ControlPort 9051
-	CookieAuthentication 1
-2. Open 'tor_path.txt', replace an existing path with your Tor launcher path as here:
-	/home/kali/tor-browser/start-tor-browser.desktop
-3. Run install.py to install required Python libraries
-4. Run seeker.py WITHOUT 'sudo' (python3 seeker.py). Follow the instructions: wait until the browser starts and connects.
-5. I'm still working on bypassing search engine ban for too many requests, if the script gives 0 results - use after 1-2 hours.
-6. FOR LEGAL USE ONLY. Anything else - on your own risk.
+1. Run install.py to install required Python libraries
+2. Run seeker.py (python3 seeker.py). Read the instructions carefully.
+3. Script doesn't bypass search engine ban for too many requests. If this happens - wait for 1-2 hours.
+4. FOR LEGAL USE ONLY. Anything else - on your own risk.
 
-Tested on Kali Linux.
-Requires Python3 and Tor browser.
+Tested on Kali Linux and Windows 10.
+Requires Python3.
+Options '2' and '3' require SMTP server address and e-mail address for test letter sending.
+Tried public SMTP servers: Gmail, Outlook, Zohomail and got banned for spam sending, so these options weren't test properly.
 
-Notify me on e-mail if you meet any errors, I'll be thankful.
+Contact me if you meet any errors, I'll be thankful.
 
 Buy me a coffee (PayPal):
 knivedschizo@proton.me
