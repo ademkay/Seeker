@@ -1,1 +1,0 @@
-/home/kali/tor-browser/start-tor-browser.desktop
