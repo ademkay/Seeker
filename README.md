@@ -1,5 +1,5 @@
 # Seeker
-Email address finder for Linux.
+Email address finder.
 The project is on development stage.
 
 1. Run install.py to install required Python libraries
