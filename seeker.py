@@ -83,7 +83,7 @@ def search_email(domain):
                 print(f"\033[1m{num}. \033[0m {result}")
                 save_to_file([f"{num}. {result}"], "search_log.txt")
             print()
-            print("\033[1mSearch finished, result saved to 'search_log.txt'\033[0m", end="\n\n")
+            print("\033[1mSearch finished, check 'search_log.txt'\033[0m", end="\n\n")
             save_to_file("\n", "search_log.txt")
 
     except Exception as e:
