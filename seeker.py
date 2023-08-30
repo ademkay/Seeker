@@ -19,7 +19,7 @@ class colour:
 
 os.system('cls' if os.name == 'nt' else 'clear')
 print(colour.Magenta + "\033[1m▒▒▒▒▒ SEEKER ▒▒▒▒▒\033[0m")
-print(colour.Magenta + "buymeacoffee.com/knivedschi6")
+print(colour.Magenta + "www.buymeacoffee.com/knivedschi6")
 print()
 
 # FUNCTIONS:
@@ -199,14 +199,14 @@ def main_menu():
         if key == "m":
             os.system('cls' if os.name == 'nt' else 'clear')
             print(colour.Magenta + "\033[1m▒▒▒▒▒ SEEKER ▒▒▒▒▒\033[0m")
-            print(colour.Magenta + "buymeacoffee.com/knivedschi6")
+            print(colour.Magenta + "www.buymeacoffee.com/knivedschi6")
             print()
             main_menu()
 
     else:
         os.system('cls' if os.name == 'nt' else 'clear')
         print(colour.Magenta + "\033[1m▒▒▒▒▒ SEEKER ▒▒▒▒▒\033[0m")
-        print(colour.Magenta + "buymeacoffee.com/knivedschi6")
+        print(colour.Magenta + "www.buymeacoffee.com/knivedschi6")
         print()
         main_menu()
 
