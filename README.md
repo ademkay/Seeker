@@ -13,5 +13,6 @@ Tried public SMTP servers: Gmail, Outlook, Zohomail and got banned for spam send
 
 Contact me if you meet any errors, I'll be thankful.
 
-Support (PayPal):
-knivedschizo@proton.me
+Support me:
+knivedschizo@proton.me (PayPal)
+buymeacoffee.com/knivedschi6
