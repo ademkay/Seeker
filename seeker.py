@@ -82,6 +82,7 @@ def search_email(keyword):
                     #pass
             print("\033[1mMails:\033[0m", end="\n\n")
             save_to_file(["Mails:"], "search_log.txt")
+            general_mail_list = list(set(general_mail_list))
             if general_mail_list:
                 for num, result in enumerate(general_mail_list, start=1): # final output, printing unique mail list
                     print(f"\033[1m{num}. \033[0m {result}")
