@@ -1,6 +1,6 @@
 # Seeker
 Email address finder with result saving to .txt file. Totally updated, replaced old failed options, added new ones. Need some help with testing and development, so if you can (and want) - contact me on mail.
-Added Google API search function (no bans for frequent requests). To switch between search modes find line 91 in seeker.py and comment/uncomment ones. Defaultly set on search with API.
+Added Google API search function (no bans for frequent requests). To switch between search modes find line 91 in seeker.py and comment/uncomment ones (working on more adequate switching now). Defaultly set on non-API search.
 
 1. Run install.py to install required Python libraries
 2. Run seeker.py (python3 seeker.py). Read the instructions carefully.
