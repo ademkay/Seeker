@@ -17,9 +17,10 @@ class colour:
     White = "\u001b[37m"
     Red = "\u001b[31m"
 
-os.system('cls' if os.name == 'nt' else 'clear')
-print(colour.Magenta + "\033[1m▒▒▒▒▒ SEEKER ▒▒▒▒▒\033[0m")
-print()
+def logo():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(colour.Magenta + "\033[1m▒▒▒▒▒ SEEKER ▒▒▒▒▒\033[0m")
+    print()
 
 # FUNCTIONS:
 
@@ -203,9 +204,7 @@ def main_menu():
             print("\033[1mEnter " + colour.Yellow + "'M'" + colour.White + " to return to main menu.\033[0m")
             key = input(colour.Yellow + "\033[1m=> \033[0m")
             if key == "m":
-                os.system('cls' if os.name == 'nt' else 'clear')
-                print(colour.Magenta + "\033[1m▒▒▒▒▒ SEEKER ▒▒▒▒▒\033[0m")
-                print()
+                logo()
                 main_menu()
 
         if choise == "1":
@@ -233,56 +232,44 @@ def main_menu():
             print("\033[1mSelect search mode:\033[0m")
             print(colour.Yellow + "\033[1m[1]" + colour.White +  " - Usual Google search\033[0m")
             print(colour.Yellow + "\033[1m[2]" + colour.White +  " - Google API search (if you have API key and SE ID)\033[0m")
-            print("\033[1mEnter " + colour.Yellow + "'M'" + colour.White + " to return to main menu.\033[0m")
+            print("\033[1mEnter anything else to return to main menu.\033[0m")
             key = input(colour.Yellow + "\033[1m=> \033[0m")
             if key == "1":
                 with open("search_mode.txt", 'w') as file:
                     file.write('no_g_api')
-                os.system('cls' if os.name == 'nt' else 'clear')
+                logo()
                 print("\033[1mUsual Google search selected.\033[0m")
                 main_menu()
             if key == "2":
                 with open("search_mode.txt", 'w') as file:
                     file.write('g_api')
-                os.system('cls' if os.name == 'nt' else 'clear')
+                logo()
                 print("\033[1mGoogle API search selected.\033[0m")
                 main_menu()
-            if key == "m":
-                os.system('cls' if os.name == 'nt' else 'clear')
-                print(colour.Magenta + "\033[1m▒▒▒▒▒ SEEKER ▒▒▒▒▒\033[0m")
-                print()
-                main_menu()
             else:
-                os.system('cls' if os.name == 'nt' else 'clear')
-                print("\033[1mWrong input.\033[0m")
+                logo()
                 main_menu()
 
         elif choise == "i":
             print("\033[1mBoolean search for your target's mail.\033[0m")
             #print("\033[1mSMTP server verification for your target's mail.\033[0m")
             #print("\033[1mFor options " + colour.Yellow + "'2'" + colour.White + " and " + colour.Yellow + "'3'" + colour.White + ": please enter your (sender's) email to " + colour.Yellow + "'sender.txt'" + colour.White + ", password to " + colour.Yellow + "'password.txt'" + colour.White + ", sender's SMTP server address to " + colour.Yellow + "'smtp_server.txt'\033[0m")
-            print("\033[1mEnter " + colour.Yellow + "'M'" + colour.White + " to return to main menu.\033[0m")
+            print("\033[1mEnter anything to return to main menu.\033[0m")
             key = input(colour.Yellow + "\033[1m=> \033[0m")
-            if key == "m":
-                os.system('cls' if os.name == 'nt' else 'clear')
-                print(colour.Magenta + "\033[1m▒▒▒▒▒ SEEKER ▒▒▒▒▒\033[0m")
-                print()
-                main_menu()
-            else:
-                os.system('cls' if os.name == 'nt' else 'clear')
-                print("\033[1mWrong input.\033[0m")
+            if key:
+                logo()
                 main_menu()
 
         else:
-            os.system('cls' if os.name == 'nt' else 'clear')
-            print(colour.Magenta + "\033[1m▒▒▒▒▒ SEEKER ▒▒▒▒▒\033[0m")
-            print()
+            logo()
             main_menu()
     except KeyboardInterrupt:
-            print("\nScript interrupted by user.")
+            logo()
+            print("Script interrupted by user.")
             main_menu()
 
 # STARTING SCRIPT:
 
 if __name__ == "__main__":
+    logo()
     main_menu()
