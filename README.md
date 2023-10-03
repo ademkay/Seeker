@@ -3,7 +3,7 @@ Email address finder with result saving to .txt file. Need some help with testin
 Added Google API search function. Added search mode switching to menu. Commented unfinished options.
 
 1. Run install.py to install required Python libraries
-2. Run seeker.py (python3 seeker.py). Read the instructions carefully.
+2. Run seeker.py. Read the instructions carefully.
    
 Tested on Kali Linux and Windows 10.
 Requires Python3.
