@@ -1,6 +1,6 @@
 # Seeker
 Email address finder with result saving to .txt file. Need some help with testing and development, so if you can (and want) - contact me on mail.
-Added Google API search function. Added search mode switching to menu. Commented unfinished options. Added .exe file for running not depending on Python.
+Added Google API search function (https://developers.google.com/custom-search/v1/overview). Added search mode switching to menu. Commented unfinished options. Added .exe file for running not depending on Python.
 
 1. Run install.py to install required Python libraries
 2. If you have ones - paste your Google API key and SE ID into referred .txt files.
