@@ -20,7 +20,7 @@ Script doesn't bypass search engine ban for too many requests. If this happens -
 Options '2' and '3' require SMTP server address and e-mail address for test letter sending.
 Tried public SMTP servers: Gmail, Outlook, Zohomail and got banned for spam sending, so these options weren't test properly.
 
-Contact me if you meet any errors, I'll be thankful.
+Contact me if you meet any errors or have any ideas, I'll be thankful.
 
 Support me:
 www.buymeacoffee.com/fairycorekvlt
