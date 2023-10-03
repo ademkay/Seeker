@@ -1,4 +1,4 @@
-import os, time, random, requests, smtplib, socket, re
+import os, time, random, requests, smtplib, socket, re, sys
 from googlesearch import search
 #from email_variants import gen_email_variants
 #from email.mime.text import MIMEText
@@ -226,7 +226,7 @@ def main_menu():
 
         if choise == "0":
             print("\033[1mGoodbye!\033[0m")
-            exit()
+            sys.exit()
 
         elif choise == "s":
             print("\033[1mSelect search mode:\033[0m")
