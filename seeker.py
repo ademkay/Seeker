@@ -230,9 +230,9 @@ def main_menu():
 
         elif choise == "s":
             print("\033[1mSelect search mode:\033[0m")
-            print(colour.Yellow + "\033[1m[1]" + colour.White +  " - Usual Google search\033[0m")
-            print(colour.Yellow + "\033[1m[2]" + colour.White +  " - Google API search (if you have API key and SE ID)\033[0m")
-            print("\033[1mEnter anything else to return to main menu.\033[0m")
+            print(colour.Yellow + "\033[1m'1'" + colour.White +  " - Usual Google search\033[0m")
+            print(colour.Yellow + "\033[1m'2'" + colour.White +  " - Google API search (if you have API key and SE ID)\033[0m")
+            print(colour.Yellow + "\033[1m'Enter'" + colour.White + " to return to main menu.\033[0m")
             key = input(colour.Yellow + "\033[1m=> \033[0m")
             if key == "1":
                 with open("search_mode.txt", 'w') as file:
@@ -254,11 +254,11 @@ def main_menu():
             print("\033[1mBoolean search for your target's mail.\033[0m")
             #print("\033[1mSMTP server verification for your target's mail.\033[0m")
             #print("\033[1mFor options " + colour.Yellow + "'2'" + colour.White + " and " + colour.Yellow + "'3'" + colour.White + ": please enter your (sender's) email to " + colour.Yellow + "'sender.txt'" + colour.White + ", password to " + colour.Yellow + "'password.txt'" + colour.White + ", sender's SMTP server address to " + colour.Yellow + "'smtp_server.txt'\033[0m")
-            print("\033[1mEnter anything to return to main menu.\033[0m")
-            key = input(colour.Yellow + "\033[1m=> \033[0m")
-            if key:
-                logo()
-                main_menu()
+            print(colour.Yellow + "\033[1m'Enter'" + colour.White + " to return to main menu.\033[0m")
+            input(colour.Yellow + "\033[1m=> \033[0m")
+            logo()
+            main_menu()
+
 
         else:
             logo()
