@@ -147,7 +147,7 @@ def search_email(keyword):
 
 # VALIDATE:
 
-smtplib.SMTP.debuglevel = 0
+'''smtplib.SMTP.debuglevel = 0
 
 
 def validate_email_variants(firstname, lastname, domain):
@@ -204,7 +204,7 @@ def validate_email(email):  # key email validation function
     except IOError as io_err:
         print(f"IO Error: {io_err}")
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error: {e}")'''
 
 
 # MAIN MENU:
