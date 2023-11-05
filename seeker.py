@@ -1,17 +1,17 @@
 import os
 import re
 import requests
-import smtplib
-import socket
+# import smtplib
+# import socket
 import sys
-from email.mime.text import MIMEText
+# from email.mime.text import MIMEText
 
 # from email_variants import gen_email_variants
 # from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
 from googlesearch import search
 
-from email_variants import gen_email_variants
+# from email_variants import gen_email_variants
 
 
 # import pdb
@@ -89,15 +89,15 @@ def search_google(query):
 
 
 def email_parser(query):
-    soup = BeautifulSoup(query.content, "html.parser")  # old
-    single_url_mail_list = []  # addresses from single URL
+    soup = BeautifulSoup(query.content, "html5lib")
+    email_list = []  # addresses from single URL
     email_regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,7}\b'
-    for link in soup.find_all("a"):
+    for link in soup.find_all():
         text = link.get_text()
         matches = re.findall(email_regex, text)
         for match in matches:
-            single_url_mail_list.append(f"{match} (Source: {query.url})")  # printing email and source url
-    return single_url_mail_list
+            email_list.append((match, query.url))
+    return email_list
 
 
 def search_email(keyword):
@@ -120,21 +120,26 @@ def search_email(keyword):
                 save_to_file([f"{num}. {result}"], "search_log.txt")
             print()
             print("\033[1mGetting e-mails. Please wait...\033[0m", end="\n\n")
-            general_mail_list = []
+            emails_with_sources = {}
             for result in url_list:
                 try:
-                    single_url_mail_list = email_parser(requests.get(result))
-                    general_mail_list.extend(single_url_mail_list)
-                except requests.exceptions.RequestException as req_exc:
-                    print(f"Error fetching URL {result}: {req_exc}")
+                    email_data = email_parser(requests.get(result))
+                    for email, source in email_data:
+                        if email in emails_with_sources:
+                            if source not in emails_with_sources[email]:
+                                emails_with_sources[email].append(source)
+                        else:
+                            emails_with_sources[email] = [source]
+                except requests.exceptions.RequestException as e:
+                    print(f"Error fetching URL {result}: {e}")
                     # pass
             print("\033[1mMails:\033[0m", end="\n\n")
             save_to_file(["Mails:"], "search_log.txt")
-            general_mail_list = list(set(general_mail_list))  # leaving unique results only
-            if general_mail_list:
-                for num, result in enumerate(general_mail_list, start=1):  # final output, printing unique mail list
-                    print(f"\033[1m{num}. \033[0m {result}")
-                    save_to_file([f"{num}. {result}"], "search_log.txt")
+            if emails_with_sources:
+                for num, (email, sources) in enumerate(emails_with_sources.items(), start=1):
+                    email_sources_str = ', '.join(sources)
+                    print(f"\033[1m{num}. \033[0m {email} (Source(s): {email_sources_str} )")
+                    save_to_file([f"{num}. {email} (Source(s): {email_sources_str} )"], "search_log.txt")
             else:
                 print("No email addresses found for this request.")
                 save_to_file(["No email addresses found for this request."], "search_log.txt")
