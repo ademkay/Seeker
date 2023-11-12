@@ -96,7 +96,16 @@ def email_parser(query):
         text = link.get_text()
         matches = re.findall(email_regex, text)
         for match in matches:
-            email_list.append((match, query.url))
+            img_regex_list = [r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.png\b',
+                              r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.jpg\b',
+                              r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.jpeg\b',
+                              r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.bmp\b',
+                              r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.tga\b',
+                              r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.svg\b']
+            wrong_matches = [re.search(regex, text) for regex in img_regex_list]
+            wrong_matches = [match.group() for match in wrong_matches if match]
+            if match not in wrong_matches:
+                email_list.append((match, query.url))
     return email_list
 
 
