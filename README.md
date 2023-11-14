@@ -1,5 +1,6 @@
 # Seeker
 ! Added DuckDuckGo search. Choose 'Switch search mode' to set. Couldn't update .exe cause it's size was 38MB, too large for GitHub.
+
 Email address finder with result saving to .txt file. Need some help with testing and development, so if you can (and want) - contact me on mail.
 Added Google API search function (https://developers.google.com/custom-search/v1/overview). Added search mode switching to menu. Commented unfinished options. Added .exe file for running not depending on Python.
 
