@@ -10,6 +10,7 @@ import sys
 # from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
 from googlesearch import search
+from duckduckgo_search import DDGS
 
 # from email_variants import gen_email_variants
 
@@ -51,16 +52,16 @@ def save_to_file(strings, filename):
 
 # SEARCH:
 
-def search_google(query):
+def seeker_search(query):
     with open("search_mode.txt", 'r') as file:
         search_mode = file.readline()
 
     if search_mode == "no_g_api":  # usual Google search
-        url_list = []
+        results_list = []
         print("\033[1mGetting URLs...\033[0m", end="\n\n")
         for result in search(query):
-            url_list.append(result)
-        return url_list
+            results_list.append(result)
+        return results_list
 
     if search_mode == "g_api":  # search with Google API. Fewer restrictions but tied to your account (will find same results on any OS)
         with open("google_api/google_api_key.txt", "r", encoding="utf-8") as file:
@@ -76,20 +77,28 @@ def search_google(query):
         response = requests.get(search_url, params=params)
 
         # results
-        url_list = []
+        results_list = []
         print("\033[1mGetting URLs...\033[0m", end="\n\n")
         if response.status_code == 200:
             data = response.json()
             links = [item.get("link") for item in data.get('items', [])]
             for link in links:
-                url_list.append(link)
+                results_list.append(link)
         else:
             print(f"error sending request: {response.status_code}")
-        return url_list
+        return results_list
+
+    if search_mode == "ddg":
+        with DDGS() as ddgs:
+            results_list = [link['href'] for link in ddgs.text(query)]
+            return results_list
 
 
 def email_parser(query):
-    soup = BeautifulSoup(query.content, "html5lib")
+    if "application/xml" in query.headers.get("Content-Type", ""):
+        soup = BeautifulSoup(query.content, "lxml-xml")
+    else:
+        soup = BeautifulSoup(query.content, "html5lib")
     email_list = []  # addresses from single URL
     email_regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,7}\b'
     for link in soup.find_all():
@@ -117,9 +126,13 @@ def search_email(keyword):
             print("lol okay good luck with it")
             return
         else:
-            request = f'"{keyword}"'
+            request_site = f'site:{keyword}'
+            request_keyword = f'"{keyword}"'
 
-            url_list = search_google(request)
+            url_list_site = seeker_search(request_site)
+            url_list_keyword = seeker_search(request_keyword)
+
+            url_list = list(set(url_list_site + url_list_keyword))
 
             print("\033[1mURLs: \033[0m", end="\n\n")
             save_to_file([f"Results for {keyword}:"], "search_log.txt")  # saving everything into .txt log
@@ -259,11 +272,12 @@ def main_menu():
             sys.exit()
 
         elif choice == "s":
-            print("\033[1mSelect search mode:\033[0m")
-            print(Colour.Yellow + "\033[1m'1'" + Colour.White + " - Usual Google search\033[0m")
+            print("\033[1mSelect search mode. Every mode brings different results:\033[0m")
+            print(Colour.Yellow + "\033[1m'1'" + Colour.White + " - Usual Google parsing\033[0m")
             print(
-                Colour.Yellow + "\033[1m'2'" + Colour.White + "- Google API search (if you have API key and SE "
+                Colour.Yellow + "\033[1m'2'" + Colour.White + " - Custom Google SE parsing (if you have API key and SE "
                                                               "ID)\033[0m")
+            print(Colour.Yellow + "\033[1m'3'" + Colour.White + " - DuckDuckGo parsing\033[0m")
             print(Colour.Yellow + "\033[1m'Enter'" + Colour.White + " to return to main menu.\033[0m")
             key = input(Colour.Yellow + "\033[1m=> \033[0m")
             if key == "1":
@@ -277,6 +291,12 @@ def main_menu():
                     file.write('g_api')
                 logo()
                 print("\033[1mGoogle API search selected.\033[0m")
+                main_menu()
+            if key == "3":
+                with open("search_mode.txt", 'w') as file:
+                    file.write('ddg')
+                logo()
+                print("\033[1mDuckDuckGo search selected.\033[0m")
                 main_menu()
             else:
                 logo()
