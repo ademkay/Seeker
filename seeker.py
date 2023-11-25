@@ -1,4 +1,5 @@
 import os
+# import pdb
 import re
 import requests
 # import smtplib
@@ -58,12 +59,11 @@ def seeker_search(query):
 
     if search_mode == "no_g_api":  # usual Google search
         results_list = []
-        print("\033[1mGetting URLs...\033[0m", end="\n\n")
         for result in search(query):
             results_list.append(result)
         return results_list
 
-    if search_mode == "g_api":  # search with Google API. Fewer restrictions but tied to your account (will find same results on any OS)
+    elif search_mode == "g_api":  # search with Google API. Fewer restrictions but tied to your account (will find same results on any OS)
         with open("google_api/google_api_key.txt", "r", encoding="utf-8") as file:
             api_key = file.read()
         with open("google_api/google_se_id.txt", "r", encoding="utf-8") as file:
@@ -78,7 +78,6 @@ def seeker_search(query):
 
         # results
         results_list = []
-        print("\033[1mGetting URLs...\033[0m", end="\n\n")
         if response.status_code == 200:
             data = response.json()
             links = [item.get("link") for item in data.get('items', [])]
@@ -88,7 +87,8 @@ def seeker_search(query):
             print(f"error sending request: {response.status_code}")
         return results_list
 
-    if search_mode == "ddg":
+    elif search_mode == "ddg":
+        # pdb.set_trace()
         with DDGS() as ddgs:
             results_list = [link['href'] for link in ddgs.text(query)]
             return results_list
@@ -129,8 +129,20 @@ def search_email(keyword):
             request_site = f'site:{keyword}'
             request_keyword = f'"{keyword}"'
 
-            url_list_site = seeker_search(request_site)
-            url_list_keyword = seeker_search(request_keyword)
+            print("\033[1mGetting URLs...\033[0m", end="\n\n")
+
+            url_list_site = []
+            url_list_keyword = []
+
+            try:
+                url_list_site = seeker_search(request_site)
+            except Exception:
+                pass
+
+            try:
+                url_list_keyword = seeker_search(request_keyword)
+            except Exception:
+                pass
 
             url_list = list(set(url_list_site + url_list_keyword))
 
@@ -159,7 +171,7 @@ def search_email(keyword):
             save_to_file(["Mails:"], "search_log.txt")
             if emails_with_sources:
                 for num, (email, sources) in enumerate(emails_with_sources.items(), start=1):
-                    email_sources_str = ', '.join(sources)
+                    email_sources_str = ' , '.join(sources)
                     print(f"\033[1m{num}. \033[0m {email} (Source(s): {email_sources_str} )")
                     save_to_file([f"{num}. {email} (Source(s): {email_sources_str} )"], "search_log.txt")
             else:
